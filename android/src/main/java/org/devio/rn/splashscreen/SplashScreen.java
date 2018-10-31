@@ -2,7 +2,10 @@ package org.devio.rn.splashscreen;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Build;
+import android.widget.TextView;
+import org.devio.rn.splashscreen.BuildConfig;
 
 import java.lang.ref.WeakReference;
 
@@ -31,6 +34,15 @@ public class SplashScreen {
                     mSplashDialog = new Dialog(activity, themeResId);
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
+                    mSplashDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface dialog) {
+                            TextView tvAppVersion = findViewById(R.id.appVersion);
+                            if (tvAppVersion != null) {
+                                tvAppVersion.setText(BuildConfig.VERSION_NAME);
+                            }
+                        }
+                    });
 
                     if (!mSplashDialog.isShowing()) {
                         mSplashDialog.show();
