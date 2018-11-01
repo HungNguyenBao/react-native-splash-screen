@@ -40,7 +40,13 @@ public class SplashScreen {
                         public void onShow(DialogInterface dialog) {
                             TextView tvAppVersion = activity.findViewById(R.id.appVersion);
                             if (tvAppVersion != null) {
-                                tvAppVersion.setText(BuildConfig.VERSION_NAME);
+                                try {
+                                    PackageInfo pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0);
+                                    String version = pInfo.versionName;
+                                    tvAppVersion.setText(version);
+                                } catch (PackageManager.NameNotFoundException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     });
