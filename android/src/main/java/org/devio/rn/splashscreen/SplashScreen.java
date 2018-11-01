@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.widget.TextView;
+
 import org.devio.rn.splashscreen.BuildConfig;
 
 import java.lang.ref.WeakReference;
@@ -37,12 +38,9 @@ public class SplashScreen {
                     mSplashDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                         @Override
                         public void onShow(DialogInterface dialog) {
-                            int id = activity.getResources().getIdentifier("appVersion", "id", activity.getPackageName());
-                            if (id > 0) {
-                                TextView tvAppVersion = activity.findViewById(id);
-                                if (tvAppVersion != null) {
-                                    tvAppVersion.setText(BuildConfig.VERSION_NAME);
-                                }
+                            TextView tvAppVersion = activity.findViewById(R.id.appVersion);
+                            if (tvAppVersion != null) {
+                                tvAppVersion.setText(BuildConfig.VERSION_NAME);
                             }
                         }
                     });
