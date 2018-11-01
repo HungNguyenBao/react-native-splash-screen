@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import java.lang.String;
 
 import java.lang.ref.WeakReference;
 
@@ -45,7 +46,8 @@ public class SplashScreen {
                                 try {
                                     PackageInfo pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0);
                                     String version = pInfo.versionName;
-                                    tvAppVersion.setText(version);
+                                    int build = pInfo.versionCode;
+                                    tvAppVersion.setText(String.format("Ver %s(%d)", version, build));
                                 } catch (PackageManager.NameNotFoundException e) {
                                     e.printStackTrace();
                                 }
