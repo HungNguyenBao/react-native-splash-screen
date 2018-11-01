@@ -6,7 +6,8 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.widget.TextView;
 
-import org.devio.rn.splashscreen.BuildConfig;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageInfo.NameNotFoundException;
 
 import java.lang.ref.WeakReference;
 
