@@ -40,7 +40,7 @@ public class SplashScreen {
                     mSplashDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                         @Override
                         public void onShow(DialogInterface dialog) {
-                            TextView tvAppVersion = activity.findViewById(R.id.appVersion);
+                            TextView tvAppVersion = mSplashDialog.findViewById(R.id.appVersion);
                             if (tvAppVersion != null) {
                                 try {
                                     PackageInfo pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0);
