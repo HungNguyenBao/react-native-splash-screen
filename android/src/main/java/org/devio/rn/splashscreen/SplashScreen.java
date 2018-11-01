@@ -7,7 +7,8 @@ import android.os.Build;
 import android.widget.TextView;
 
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageInfo.NameNotFoundException;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 
 import java.lang.ref.WeakReference;
 
