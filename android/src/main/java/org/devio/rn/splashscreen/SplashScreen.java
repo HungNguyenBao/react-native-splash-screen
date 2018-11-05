@@ -34,14 +34,28 @@ public class SplashScreen {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!activity.isFinishing()) {
+                if (mActivity == null) {
+                    return;
+                }
+                activity = mActivity.get();
+
+                if (activity != null && !activity.isFinishing()) {
                     mSplashDialog = new Dialog(activity, themeResId);
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
                     mSplashDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                         @Override
                         public void onShow(DialogInterface dialog) {
-                            TextView tvAppVersion = mSplashDialog.findViewById(R.id.appVersion);
+                            if (mActivity == null) {
+                                return;
+                            }
+                            activity = mActivity.get();
+
+                            if (activity == null || activity.isFinishing()) {
+                                return;
+                            }
+
+                            TextView tvAppVersion = dialog.findViewById(R.id.appVersion);
                             if (tvAppVersion != null) {
                                 try {
                                     PackageInfo pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0);
