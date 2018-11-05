@@ -37,10 +37,10 @@ public class SplashScreen {
                 if (mActivity == null) {
                     return;
                 }
-                activity = mActivity.get();
+                Activity tempActivity = mActivity.get();
 
-                if (activity != null && !activity.isFinishing()) {
-                    mSplashDialog = new Dialog(activity, themeResId);
+                if (tempActivity != null && !tempActivity.isFinishing()) {
+                    mSplashDialog = new Dialog(tempActivity, themeResId);
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
                     mSplashDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -49,16 +49,16 @@ public class SplashScreen {
                             if (mActivity == null) {
                                 return;
                             }
-                            activity = mActivity.get();
+                            Activity tempActivity = mActivity.get();
 
-                            if (activity == null || activity.isFinishing()) {
+                            if (tempActivity == null || tempActivity.isFinishing()) {
                                 return;
                             }
 
                             TextView tvAppVersion = dialog.findViewById(R.id.appVersion);
                             if (tvAppVersion != null) {
                                 try {
-                                    PackageInfo pInfo = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0);
+                                    PackageInfo pInfo = tempActivity.getPackageManager().getPackageInfo(tempActivity.getPackageName(), 0);
                                     String version = pInfo.versionName;
                                     int build = pInfo.versionCode;
                                     tvAppVersion.setText(String.format("Ver %s(%d)", version, build));
